@@ -1,0 +1,36 @@
+<ion-view view-title="{{ 'ORDER' | translate }}">
+	<ion-content>
+		<ion-list>
+			<ion-item class="item-text-wrap">
+				<p class="order-date">{{vm.order.date | date : 'short'}}</p>
+				<h3>{{vm.order.friendlyID}}</h3>
+				<p class="order-amount">{{vm.order.totalAmount | currency}}</p>
+				<p>{{vm.order.deliveryMethod | translate}}</p>
+				<div>{{vm.order.status | translate}}</div>
+				<p style="font-style: italic; font-size: small;">{{vm.order.notes}}</p>
+			</ion-item>
+			<ion-item nav-clear class="item-divider" ng-if="vm.order.items && vm.order.items.length">
+				{{ 'ITEMS' | translate }}
+			</ion-item>
+			<ion-item ng-repeat="item in vm.order.items" class="item-thumbnail-left item-text-wrap">
+				<img ng-src="{{item.picture}}"/>
+				<h2>{{item.name}}</h2>
+				<p>{{item.description | limitTo: 80 }}{{item.description.length > 80 ? '...' : ''}}</p>
+				<p class="text-right">{{item.unitPrice | currency : item.currency : 2 }} x {{item.quantity}}
+					{{item.size}}</p>
+
+				<p class="text-right" style="font-style: italic;" ng-if="item.childVariant">
+					{{item.childVariant}}: {{item.childUnitPrice | currency : item.currency : 2 }}
+				</p>
+
+				<p class="text-right" ng-repeat="option in item.options" style="font-style: italic;">
+					{{option.name}}: {{option.price | currency : item.currency : 2 }}
+				</p>
+
+				<p class="text-right" style="font-weight: 500;">
+					{{ 'TOTAL' | translate }}: {{item.totalPrice | currency : item.currency : 2 }}
+				</p>
+			</ion-item>
+		</ion-list>
+	</ion-content>
+</ion-view>

@@ -1,0 +1,78 @@
+<ion-view view-title="{{ 'DINE_IN' | translate }}">
+	<form novalidate name="deliveryForm">
+		<ion-content>
+			<div class="content-inner">
+				<h1>{{vm.restaurant.name}}</h1>
+				<p>{{vm.restaurant.address}}</p>
+			</div>
+
+			<ion-list>
+				<ion-item class="item-input item-stacked-label">
+					<span class="input-label">{{ 'TABLE' | translate }}</span>
+					<input type="text"
+						name="table"
+						ng-minlength="3"
+						ng-model="vm.data.table"
+						placeholder="{{ 'TABLE' | translate }}"
+						required/>
+					<p ng-show="deliveryForm.table.$error.required && deliveryForm.table.$dirty"
+						class="error-message">
+						{{ 'TABLE' | translate }} {{ 'IS_REQUIRED' | translate }}
+					</p>
+					<p class="error-message"
+						ng-show="deliveryForm.table.$error.minlength && deliveryForm.table.$dirty">
+						{{ 'TABLE' | translate }} {{ 'SHOULD_BE_AT_LEAST_N_CHARS' | translate : '{ number: 3 }' }}
+					</p>
+				</ion-item>
+				<ion-item class="item-input item-stacked-label">
+					<span class="input-label">{{ 'EMAIL' | translate }}</span>
+					<input type="email"
+						name="email"
+						ng-model="vm.data.email"
+						ng-minlength="5"
+						placeholder="{{ 'EMAIL' | translate }}"
+						required/>
+					<p ng-show="deliveryForm.email.$error.required && deliveryForm.email.$dirty"
+						class="error-message">
+						{{ 'EMAIL' | translate }} {{ 'IS_REQUIRED' | translate }}
+					</p>
+					<p class="error-message"
+						ng-show="(deliveryForm.email.$error.minlength && deliveryForm.email.$dirty)">
+						{{ 'EMAIL' | translate }} {{ 'SHOULD_BE_AT_LEAST_N_CHARS' | translate : '{ number: 5 }' }}
+					</p>
+				</ion-item>
+				</ion-item>
+				<ion-item class="item-input item-stacked-label">
+					<span class="input-label">{{ 'PHONE_NUMBER' | translate }}</span>
+					<input type="tel"
+						name="phone"
+						ng-model="vm.data.phone"
+						ng-minlength="9"
+						ng-maxlength="12"
+						placeholder="{{ 'PHONE_NUMBER' | translate }}"
+						required/>
+					<p ng-show="deliveryForm.phone.$error.required && deliveryForm.phone.$dirty"
+						class="error-message">
+						{{ 'PHONE_NUMBER' | translate }} {{ 'IS_REQUIRED' | translate }}
+					</p>
+					<p class="error-message"
+						ng-show="(deliveryForm.phone.$error.minlength || deliveryForm.phone.$error.maxlength) && deliveryForm.phone.$dirty">
+						{{ 'PHONE_NUMBER' | translate }} {{ 'SHOULD_BE_AT_LEAST_N_DIGITS' | translate : '{ min_number: 9 }' }}
+						{{ 'AND_M_DIGITS' | translate : '{ max_number: 12 }'}}
+					</p>
+				</ion-item>
+
+				<ion-item class="item-input item-stacked-label">
+					<span class="input-label">{{ 'ORDER_NOTES' | translate }}</span>
+					<textarea rows="6"
+						ng-model="vm.data.notes"
+						name="notes"
+						placeholder="{{ 'ADD_NOTES_FOR_THIS_ORDER' | translate }}"></textarea>
+				</ion-item>
+			</ion-list>
+		</ion-content>
+		<div class="bar bar-footer bar-calm" ng-click="vm.confirm(deliveryForm)">
+			<div class="title">{{ 'SUBMIT' | translate }}</div>
+		</div>
+	</form>
+</ion-view>

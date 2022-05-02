@@ -1,0 +1,49 @@
+<ion-view view-title="{{ 'HOME' | translate }}">
+	<ion-content>
+		<ion-slides ng-if="vm.offers" options="vm.options" slider="data.slider" style="height: 300px">
+			<ion-slide-page ng-repeat="offer in vm.offers">
+				<div class="box home-hello" ng-click="vm.showOfferDetails(offer._id)">
+					<img ng-src="{{offer.pictures[0].uri}}"/>
+					<div class="item">
+						<h2>{{offer.name}}</h2>
+					</div>
+				</div>
+			</ion-slide-page>
+		</ion-slides>
+
+		<h1 class="padding-left padding-right">{{vm.storeName}}</h1>
+		<div ng-repeat="e in vm.categories" ng-if="$index%2==0" class="row colums-two">
+
+			<div class="card col home">
+				<a class="item item-text-wrap" ng-click="vm.showProducts(vm.categories[$index])">
+					<h1><i class="{{vm.categories[$index].icon}}"></i></h1>
+					<h2>{{vm.categories[$index].title}}</h2>
+				</a>
+			</div>
+
+			<div class="card col home" ng-if="!!vm.categories[$index + 1]">
+				<a class="item item-text-wrap" ng-click="vm.showProducts(vm.categories[$index + 1])">
+					<h1><i class="{{vm.categories[$index + 1].icon}}"></i></h1>
+					<h2>{{vm.categories[$index + 1].title}}</h2>
+				</a>
+			</div>
+
+		</div>
+
+		<div class="row">
+			<div class="list card col">
+				<a href="#/app/map" href="" class="item item-icon-left">
+					<i class="icon ion-map"></i>
+					{{ 'MAP' | translate }}
+				</a>
+
+				<a href="#/app/contact-us" class="item item-icon-left">
+					<i class="icon ion-ios-information"></i>
+					{{ 'CONTACT_US' | translate }}
+				</a>
+			</div>
+		</div>
+
+
+	</ion-content>
+</ion-view>

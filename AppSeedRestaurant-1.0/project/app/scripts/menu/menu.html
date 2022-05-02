@@ -1,0 +1,87 @@
+<ion-side-menus enable-menu-with-back-views="false">
+	<ion-side-menu-content>
+		<ion-nav-bar class="bar-stable">
+			<ion-nav-back-button>
+			</ion-nav-back-button>
+
+			<ion-nav-buttons side="left">
+				<button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+				</button>
+			</ion-nav-buttons>
+		</ion-nav-bar>
+		<ion-nav-view name="menuContent"></ion-nav-view>
+	</ion-side-menu-content>
+
+	<ion-side-menu side="left">
+		<ion-header-bar class="bar-stable">
+			<h1 class="title">{{ 'RESTAURANT' | translate }}</h1>
+		</ion-header-bar>
+		<ion-content>
+			<ion-list>
+				<ion-item nav-clear menu-close class="item-icon-left" href="#/app/home">
+					<i class="icon ion-ios-home"></i>
+					{{ 'HOME' | translate }}
+				</ion-item>
+				<ion-item nav-clear menu-close class="item-icon-left" href="#/app/categories">
+					<i class="icon ion-android-apps"></i>
+					{{ 'CATEGORIES' | translate }}
+				</ion-item>
+				<ion-item nav-clear menu-close class="item-icon-left" href="#/app/favorites">
+					<i class="icon ion-ios-star"></i>
+					{{ 'FAVORITES' | translate }}
+				</ion-item>
+				<ion-item nav-clear menu-close class="item-icon-left" href="#/app/restaurant-cart">
+					<i class="icon ion-ios-cart"></i>
+					{{ 'SHOPPING_CART' | translate }}
+				</ion-item>
+				<ion-item nav-clear menu-close class="item-icon-left" href="#/app/orders">
+					<i class="icon ion-bag"></i>
+					{{ 'MY_ORDERS' | translate }}
+				</ion-item>
+				<ion-item nav-clear menu-close class="item-icon-left" href="#/app/offers">
+					<i class="icon ion-ios-pricetags"></i>
+					{{ 'OFFERS' | translate }}
+				</ion-item>
+				<ion-item nav-clear class="item-divider">
+					{{ 'CATEGORIES' | translate }}
+				</ion-item>
+
+				<ion-item nav-clear menu-close class="item-icon-left" ng-repeat="category in vm.categories"
+					ui-sref="app.products({categoryId: category.categoryId, categoryName: category.title})">
+					<i class="icon ion-folder"></i>
+					{{category.title}}
+				</ion-item>
+				<ion-item nav-clear class="item-divider" ng-if="false">
+					{{ 'NEWS' | translate }}
+				</ion-item>
+				<ion-item nav-clear menu-close class="item-icon-left" ng-if="false" href="#/app/wordpress-articles">
+					<i class="icon ion-social-wordpress"></i>
+					Wordpress
+				</ion-item>
+				<ion-item nav-clear menu-close class="item-icon-left" ng-if="false" href="#/app/drupal-articles">
+					<i class="icon ion-waterdrop"></i>
+					Drupal
+				</ion-item>
+				<ion-item nav-clear menu-close class="item-icon-left" ng-if="false" href="#/app/articles">
+					<i class="icon ion-ios-paper"></i>
+					{{ 'ARTICLES' | translate }}
+				</ion-item>
+				<ion-item nav-clear class="item-divider">
+					{{ 'OTHER' | translate }}
+				</ion-item>
+				<ion-item nav-clear menu-close class="item-icon-left" href="#/app/contact-us">
+					<i class="icon ion-ios-information"></i>
+					{{ 'CONTACT_US' | translate }}
+				</ion-item>
+				<ion-item nav-clear menu-close class="item-icon-left" href="#/app/map">
+					<i class="icon ion-map"></i>
+					{{ 'MAP' | translate }}
+				</ion-item>
+				<ion-item nav-clear menu-close class="item-icon-left" ng-if="false" href="#/app/push">
+					<i class="icon ion-android-notifications"></i>
+					{{ 'PUSH' | translate }}
+				</ion-item>
+			</ion-list>
+		</ion-content>
+	</ion-side-menu>
+</ion-side-menus>

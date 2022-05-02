@@ -1,0 +1,66 @@
+<ion-view view-title="{{ 'SHOPPING_CART' | translate }}" cache-view="false">
+	<ion-content class="has-extended-footer" ng-class="{ 'vcenter': vm.items.length === 0 }">
+		<ion-list can-swipe="true">
+			<ion-item ng-repeat="item in vm.items" class="item-thumbnail-left item-text-wrap">
+				<img ng-src="{{item.picture}}"/>
+				<h2>{{item.name}}</h2>
+				<p>{{item.description | limitTo: 80 }}{{item.description.length > 80 ? '...' : ''}}</p>
+				<p class="text-right">{{item.price | currency : item.currency : 2 }} x {{item.quantity}}
+					{{item.size}}</p>
+
+				<p class="text-right" style="font-style: italic;" ng-if="item.childSize">
+					{{item.childSize}}: {{item.childPrice | currency : item.currency : 2 }}
+				</p>
+
+				<p class="text-right" ng-repeat="option in item.options" style="font-style: italic;">
+					{{option.name}}: {{option.value | currency : item.currency : 2 }}
+				</p>
+
+				<p class="text-right" style="font-weight: 500;">
+					{{ 'TOTAL' | translate }}: {{vm.getItemTotal(item) | currency : item.currency : 2 }}
+				</p>
+
+				<ion-option-button class="button-balanced" ng-click="vm.changeQuantity(item)">
+					{{ 'CHANGE_QUANTITY' | translate }}
+				</ion-option-button>
+				<ion-option-button class="button-assertive" ng-click="vm.deleteItem(item)">
+					{{ 'DELETE' | translate }}
+				</ion-option-button>
+			</ion-item>
+		</ion-list>
+
+		<div ng-if="vm.items.length === 0">
+			<h1 class="text-center"><i class="icon ion-sad-outline"></i></h1>
+			<p class="text-center padding-top dark">
+				<span>{{ 'CART_IS_EMPTY' | translate }}</span>
+			</p>
+		</div>
+
+	</ion-content>
+	<div class="bar bar-footer bar-calm extended-footer" ng-click="vm.proceedToPayment()">
+		<div ng-if="vm.currency">
+			<div class="title">{{ "COMPLETE_THE_ORDER" | translate }}</div>
+			<div class="subtitle">
+				<span>{{ 'TOTAL' | translate }}: </span>
+				<span ng-if="vm.discount === 0">
+					{{vm.totalProducts + vm.totalOffers | currency : vm.currency : 2 }}
+				</span>
+				<span ng-if="vm.discount !== 0">
+					<span ng-if="vm.totalOffers !== 0">
+						{{vm.totalOffers | currency : vm.currency : 2 }}
+					</span>
+					<span ng-if="vm.totalProducts !== 0 && vm.totalOffers !== 0">+</span>
+					<span ng-if="vm.totalProducts !== 0">
+						({{vm.totalProducts | currency : vm.currency : 2 }} - {{ vm.discount * 100 }}%) =
+						<span class="total-with-discount">
+							{{vm.totalWithDiscount | currency : vm.currency : 2 }}
+						</span>
+					</span>
+				</span>
+			</div>
+		</div>
+		<div ng-if="!vm.currency" class="title">
+			{{ 'CART_IS_EMPTY' | translate }}
+		</div>
+	</div>
+</ion-view>

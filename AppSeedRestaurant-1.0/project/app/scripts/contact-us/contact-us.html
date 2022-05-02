@@ -1,0 +1,74 @@
+<ion-view view-title="{{ 'CONTACT_US' | translate }}">
+	<ion-content>
+		<div class="home-hello">
+			<ion-slide-box show-pager="false">
+				<ion-slide ng-repeat="image in vm.images">
+					<div class="box blue">
+						<img ng-src="{{image.uri}}"/>
+					</div>
+				</ion-slide>
+			</ion-slide-box>
+
+			<div class="item item-text-wrap">
+				<h1>{{vm.storeName}}</h1>
+				{{vm.address}}
+			</div>
+		</div>
+
+		<div class="content-horizontal-padding">
+			<h3>{{ 'ABOUT_US' | translate }}</h3>
+			<p>{{vm.desc}}</p>
+		</div>
+
+		<h3 class="content-horizontal-padding">{{ 'OPEN_HOURS' | translate }}</h3>
+		<div class="list list-inset">
+			<label class="item item-input item-stacked-label" ng-repeat="day in vm.openHours">
+				<span class="input-label">{{day.name | translate}}</span>
+				<span class="data">{{day.times.join(" / ")}}</span>
+			</label>
+		</div>
+
+		<h3 class="content-horizontal-padding">{{ 'GET_IN_TOUCH' | translate }}</h3>
+		<div class="list card">
+			<a href="tel:{{vm.phoneNumber}}" class="item item-icon-left">
+				<i class="icon ion-ios-telephone"></i>
+				{{ 'CALL_US' | translate }}
+			</a>
+
+			<a class="item item-icon-left" ng-click="vm.sendEmail()">
+				<i class="icon ion-email"></i>
+				{{ 'SEND_EMAIL' | translate }}
+			</a>
+
+			<a href="#" class="item item-icon-left" ng-click="vm.getDirections()">
+				<i class="icon ion-compass"></i>
+				{{ 'FIND_US_GET_DIRECTION' | translate }}
+			</a>
+		</div>
+
+		<h4 class="content-horizontal-padding">{{ 'GET_SOCIAL_WITH_US' | translate }}</h4>
+
+		<div class="list card">
+			<a ng-click="vm.openFacebookPage()" class="item item-icon-left">
+				<i class="icon ion-social-facebook"></i>
+				{{ 'VISIT_US_ON_FACEBOOK' | translate }}
+			</a>
+
+			<a ng-click="vm.openInstagramPage()" ng-if="false" class="item item-icon-left">
+				<i class="icon ion-social-instagram-outline"></i>
+				{{ 'FOLLOW_US_ON' | translate }} Instagram
+			</a>
+
+			<a ng-click="vm.openTwitterPage()" ng-if="false" class="item item-icon-left">
+				<i class="icon ion-social-twitter"></i>
+				{{ 'FOLLOW_US_ON' | translate }} Twitter
+			</a>
+
+			<a ng-click="vm.openPinterestPage()" ng-if="false" class="item item-icon-left">
+				<i class="icon ion-social-pinterest"></i>
+				{{ 'FOLLOW_US_ON' | translate }} Pinterest
+			</a>
+		</div>
+
+	</ion-content>
+</ion-view>

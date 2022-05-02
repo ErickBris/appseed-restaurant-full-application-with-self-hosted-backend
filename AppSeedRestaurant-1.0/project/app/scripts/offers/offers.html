@@ -1,0 +1,36 @@
+<ion-view>
+	<ion-nav-title>{{ 'OFFERS' | translate }}</ion-nav-title>
+	<ion-nav-buttons side="right">
+		<button class="button button-clear icon ion-ios-cart" ng-click="vm.showCart()"></button>
+	</ion-nav-buttons>
+
+	<ion-content>
+		<div ng-repeat="p in vm.offers" ng-if="$index%2 == 0" class="row colums-two">
+			<div class="card col" ng-click="vm.showOfferDetails(vm.offers[$index]._id)">
+				<div class="item item-image">
+					<img ng-src="{{vm.offers[$index].pictures[0].uri}}">
+				</div>
+
+				<a class="item">
+					<h3>{{vm.offers[$index].name}}</h3>
+					<h4>{{vm.offers[$index].prices[0].value | currency : vm.offers[$index].prices[0].currency : 2}}</h4>
+				</a>
+			</div>
+
+			<div ng-style="{'visibility': !!vm.offers[$index + 1] ? 'visible' : 'hidden'}" class="card col"
+				ng-click="vm.showOfferDetails(vm.offers[$index + 1]._id)">
+				<div class="item item-image">
+					<img ng-src="{{vm.offers[$index + 1].pictures[0].uri}}">
+				</div>
+
+				<a class="item">
+					<h3>{{vm.offers[$index + 1].name}}</h3>
+					<h4>{{vm.offers[$index + 1].prices[0].value | currency : vm.offers[$index + 1].prices[0].currency :
+						2}}</h4>
+				</a>
+			</div>
+
+		</div>
+
+	</ion-content>
+</ion-view>

@@ -1,0 +1,17 @@
+<ion-list>
+	<ion-item class="item-input">
+		<input type="text" ng-model="data.fullname" placeholder="{{ 'FULL_NAME' | translate }}"/>
+	</ion-item>
+	<ion-item class="item-input">
+		<input type="email" ng-model="data.email" placeholder="{{ 'EMAIL' | translate }}"/>
+	</ion-item>
+	<ion-item class="item-input">
+		<input type="tel" ng-model="data.phone" placeholder="{{ 'PHONE_NUMBER' | translate }}"/>
+	</ion-item>
+	<ion-item class="item-input">
+		<textarea rows="6"
+			ng-model="data.notes"
+			name="notes"
+			placeholder="{{ 'ADD_NOTES_FOR_THIS_ORDER' | translate }}"></textarea>
+	</ion-item>
+</ion-list>

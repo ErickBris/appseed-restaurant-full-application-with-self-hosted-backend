@@ -1,0 +1,21 @@
+<ion-view view-title="Orders" cache-view="false">
+	<ion-content>
+		<ion-refresher
+			pulling-text="Pull to refresh..."
+			on-refresh="vm.doRefresh()">
+		</ion-refresher>
+
+		<ion-list can-swipe="true" ng-repeat="order in vm.orders | orderBy : '-date'">
+			<ion-item ng-click="vm.navigate(order)">
+				<p class="order-date">{{order.date | date : 'short'}}</p>
+				<h3>{{order.friendlyID}}</h3>
+				<p class="order-amount">{{order.totalAmount | currency}}</p>
+				<p>{{order.deliveryMethod | translate}}</p>
+				<div>{{order.status | translate}}</div>
+				<ion-option-button class="button-assertive" ng-click="vm.remove(order)">
+					Remove
+				</ion-option-button>
+			</ion-item>
+		</ion-list>
+	</ion-content>
+</ion-view>
